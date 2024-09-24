@@ -13,7 +13,7 @@
             <article class="px-4">
                 <header>
                     <h1 class="font-black text-4xl leading-snug text-gray-800">
-                        {{ $api->summary ?? $api->title }}
+                        {{ $api->title }}
                     </h1>
 
                     @foreach ($api->methods as $method)
@@ -26,11 +26,15 @@
                     @endforeach
                 </header>
 
-                @if ($api->description !== null)
-                    <section class="reference-description pt-16 text-lg text-gray-600">
+                <section class="reference-description pt-16 text-lg text-gray-600">
+                    @if ($api->summary !== null)
+                        <p>{{ $api->summary }}</p>
+                    @endif
+
+                    @if ($api->description !== null)
                         {!! $markdown->convert($api->description) !!}
-                    </section>
-                @endif
+                    @endif
+                </section>
             </article>
         </div>
     </body>
