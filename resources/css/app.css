@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.reference-description {
+    p, ul, li {
+        @apply mt-6;
+    }
+
+    > :first-child {
+        @apply mt-0;
+    }
+
+    ul {
+        @apply pl-5 list-disc;
+    }
+
+    li::marker {
+        @apply text-slate-300;
+    }
+}
