@@ -30,7 +30,7 @@
 </header>
 
 @if (isset($schema['description']))
-    <div class="parameter-description mt-3 text-sm text-slate-600">
+    <div class="mt-3 text-sm text-slate-600 markdown markdown-base">
         {!! $markdown->convert($schema['description']) !!}
     </div>
 @endif

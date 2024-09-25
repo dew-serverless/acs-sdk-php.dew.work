@@ -2,33 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.reference-description {
-    p, ul, li {
-        @apply mt-6;
-    }
-
-    > :first-child {
-        @apply mt-0;
-    }
-
-    ul {
-        @apply pl-5 list-disc;
-    }
-
-    li::marker {
-        @apply text-slate-300;
-    }
-}
-
-.parameter-description {
-    p, ul, li {
-        @apply mt-5;
-    }
-
-    > :first-child {
-        @apply mt-0;
-    }
-
+.markdown {
     ul {
         @apply pl-5 list-disc;
     }
@@ -47,5 +21,25 @@
         &:hover {
             @apply text-sky-600;
         }
+    }
+}
+
+.markdown-loose {
+    p, ul, li {
+        @apply mt-6;
+    }
+
+    > :first-child {
+        @apply mt-0;
+    }
+}
+
+.markdown-base {
+    p, ul, li {
+        @apply mt-5;
+    }
+
+    > :first-child {
+        @apply mt-0;
     }
 }

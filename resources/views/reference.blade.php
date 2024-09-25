@@ -26,7 +26,7 @@
                     @endforeach
                 </header>
 
-                <section class="reference-description pt-16 text-lg text-gray-600">
+                <section class="pt-16 text-lg text-gray-600 markdown markdown-loose">
                     @if ($api->summary !== null)
                         <p>{{ $api->summary }}</p>
                     @endif
