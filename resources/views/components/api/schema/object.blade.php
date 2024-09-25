@@ -1,20 +1,29 @@
 @props([
-    'name',
+    'name' => '{}',
     'schema',
     'markdown',
+
+    // hide header and description
+    'compact' => false,
 ])
 
-@if (isset($schema['properties']))
-    <div class="pl-10">
-        @foreach ($schema['properties'] as $property => $propSchema)
-            <div class="mt-7">
-                <x-dynamic-component
-                    :component="'api.schema.'.$propSchema['type']"
-                    :name="$property"
-                    :schema="$propSchema"
-                    :markdown="$markdown"
-                />
-            </div>
-        @endforeach
-    </div>
-@endif
+<x-api.schema.base
+    :name="$name"
+    :schema="$schema"
+    :markdown="$markdown"
+    :compact="$compact"
+>
+    @if (isset($schema['properties']))
+        <div class="pl-10">
+            @foreach ($schema['properties'] as $property => $propSchema)
+                <div class="mt-7">
+                    <x-api.schema
+                        :name="$property"
+                        :schema="$propSchema"
+                        :markdown="$markdown"
+                    />
+                </div>
+            @endforeach
+        </div>
+    @endif
+</x-api.schema>

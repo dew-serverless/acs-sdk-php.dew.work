@@ -3,33 +3,38 @@
     'schema',
     'markdown',
 
+    // hide header and description
+    'compact' => false,
+
     // slots
     'childType' => null,
 ])
 
-<header class="flex items-center">
-    <h4 class="font-bold text-base">
-        {{ $name }}
-    </h4>
+@unless ($compact)
+    <header class="flex items-center">
+        <h4 class="font-bold text-base">
+            {{ $name }}
+        </h4>
 
-    @if (isset($schema['type']))
-        <div class="ml-2 text-sm text-slate-600">
-            @if ($childType === null)
-                {{ $schema['type']}}
-            @else
-                {{ $schema['type'] }}&lt;{{ $childType }}&gt;
-            @endif
-        </div>
-    @endif
+        @if (isset($schema['type']))
+            <div class="ml-2 text-sm text-slate-600">
+                @if ($childType === null)
+                    {{ $schema['type']}}
+                @else
+                    {{ $schema['type'] }}&lt;{{ $childType }}&gt;
+                @endif
+            </div>
+        @endif
 
-    @if (isset($schema['required']) && $schema['required'] === true)
-        <div class="ml-auto text-sm text-amber-600 uppercase">
-            {{ __('required') }}
-        </div>
-    @endif
-</header>
+        @if (isset($schema['required']) && $schema['required'] === true)
+            <div class="ml-auto text-sm text-amber-600 uppercase">
+                {{ __('required') }}
+            </div>
+        @endif
+    </header>
+@endunless
 
-@if (isset($schema['description']))
+@if (! $compact && isset($schema['description']) && $schema['description'] !== '')
     <div class="mt-3 text-sm text-slate-600 markdown markdown-base">
         {!! $markdown->convert($schema['description']) !!}
     </div>

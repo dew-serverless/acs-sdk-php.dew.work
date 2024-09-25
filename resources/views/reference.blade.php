@@ -48,14 +48,33 @@
 
                         @foreach ($api->getQueryParameters() as $parameter)
                             <div class="mt-10 max-w-xl">
-                                <x-dynamic-component
-                                    :component="'api.schema.'.$parameter['schema']['type']"
+                                <x-api.schema
                                     :name="$parameter['name']"
                                     :schema="$parameter['schema']"
                                     :markdown="$markdown"
                                 />
                             </div>
                         @endforeach
+                    @endif
+                </section>
+
+                <section class="mt-16">
+                    <h2 class="font-bold text-3xl">
+                        {{ __('Response') }}
+                    </h2>
+
+                    @if (isset($api->responses['200']['schema']))
+                        <h3 class="mt-16 font-bold text-xl">
+                            {{ __('Body') }}
+                        </h3>
+
+                        <div class="mt-10 max-w-xl">
+                            <x-api.schema
+                                name="{}"
+                                :schema="$api->responses['200']['schema']"
+                                :markdown="$markdown"
+                            />
+                        </div>
                     @endif
                 </section>
             </article>
