@@ -14,7 +14,7 @@
     :compact="$compact"
 >
     @if (isset($schema['properties']))
-        <div class="pl-10">
+        <div class="pl-7 border-l border-l-slate-300 border-solid">
             @foreach ($schema['properties'] as $property => $propSchema)
                 <div class="mt-7">
                     <x-api.schema
