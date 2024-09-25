@@ -35,6 +35,29 @@
                         {!! $markdown->convert($api->description) !!}
                     @endif
                 </section>
+
+                <section class="mt-16">
+                    <h2 class="font-bold text-3xl">
+                        {{ __('Request') }}
+                    </h2>
+
+                    @if ($api->getQueryParameters() !== [])
+                        <h3 class="mt-16 font-bold text-xl">
+                            {{ __('Query Parameters') }}
+                        </h3>
+
+                        @foreach ($api->getQueryParameters() as $parameter)
+                            <div class="mt-10 max-w-xl">
+                                <x-dynamic-component
+                                    :component="'api.schema.'.$parameter['schema']['type']"
+                                    :name="$parameter['name']"
+                                    :schema="$parameter['schema']"
+                                    :markdown="$markdown"
+                                />
+                            </div>
+                        @endforeach
+                    @endif
+                </section>
             </article>
         </div>
     </body>

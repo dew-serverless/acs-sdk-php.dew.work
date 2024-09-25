@@ -19,3 +19,33 @@
         @apply text-slate-300;
     }
 }
+
+.parameter-description {
+    p, ul, li {
+        @apply mt-5;
+    }
+
+    > :first-child {
+        @apply mt-0;
+    }
+
+    ul {
+        @apply pl-5 list-disc;
+    }
+
+    li::marker {
+        @apply text-slate-300;
+    }
+
+    code {
+        @apply py-1 px-2 text-slate-600 bg-slate-100 rounded-md;
+    }
+
+    a {
+        @apply underline decoration-1 underline-offset-4 decoration-sky-500;
+
+        &:hover {
+            @apply text-sky-600;
+        }
+    }
+}
