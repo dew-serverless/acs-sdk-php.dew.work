@@ -36,7 +36,7 @@
 @endif
 
 @if (isset($schema['example']))
-    <div class="mt-3 text-xs text-slate-600">
+    <div class="mt-5 text-xs text-slate-600">
         {{ __('Example:') }}
         <code class="py-1 px-2 text-slate-600 bg-slate-100 rounded-md">
             {{ $schema['example'] }}
@@ -45,7 +45,7 @@
 @endif
 
 @if (isset($schema['default']))
-    <div class="mt-3 text-xs text-slate-600">
+    <div class="mt-5 text-xs text-slate-600">
         {{ __('Default:') }}
         <code class="py-1 px-2 text-slate-600 bg-slate-100 rounded-md">
             {{ $schema['default'] }}

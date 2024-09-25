@@ -26,7 +26,7 @@
 
 .markdown-loose {
     p, ul, li {
-        @apply mt-6;
+        @apply mt-5;
     }
 
     > :first-child {
@@ -36,7 +36,7 @@
 
 .markdown-base {
     p, ul, li {
-        @apply mt-5;
+        @apply mt-3;
     }
 
     > :first-child {
