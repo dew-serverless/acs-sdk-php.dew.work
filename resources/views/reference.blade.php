@@ -59,9 +59,17 @@
                 </section>
 
                 <section class="mt-16">
-                    <h2 class="font-bold text-3xl">
-                        {{ __('Response') }}
-                    </h2>
+                    <div class="flex">
+                        <h2 class="font-bold text-3xl">
+                            {{ __('Response') }}
+                        </h2>
+
+                        <div class="ml-8 flex">
+                            <div class="px-4 font-bold text-base text-white bg-emerald-600 leading-9 rounded-md cursor-pointer">
+                                200
+                            </div>
+                        </div>
+                    </div>
 
                     @if (isset($api->responses['200']['schema']))
                         <h3 class="mt-16 font-bold text-xl">
