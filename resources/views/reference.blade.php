@@ -45,7 +45,23 @@
                         {{ __('Request') }}
                     </h2>
 
-                    @if ($api->getQueryParameters() !== [])
+                    @if ($api->hasPathParameters())
+                        <h3 class="mt-16 font-bold text-xl">
+                            {{ __('Path Parameters') }}
+                        </h3>
+
+                        @foreach ($api->getPathParameters() as $parameter)
+                            <div class="mt-10 max-w-xl">
+                                <x-api.schema
+                                    :name="$parameter->name"
+                                    :schema="$parameter->getSchema()"
+                                    :markdown="$markdown"
+                                />
+                            </div>
+                        @endforeach
+                    @endif
+
+                    @if ($api->hasQueryParameters())
                         <h3 class="mt-16 font-bold text-xl">
                             {{ __('Query Parameters') }}
                         </h3>
@@ -61,7 +77,7 @@
                         @endforeach
                     @endif
 
-                    @if ($api->getRequestBody() !== null)
+                    @if ($api->hasRequestBody())
                         <h3 class="mt-16 font-bold text-xl">
                             {{ __('Body') }}
                         </h3>

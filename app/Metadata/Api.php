@@ -34,12 +34,35 @@ abstract class Api
      */
     abstract function getHttpInvocations(): array;
 
+    public function hasPathParameters(): bool
+    {
+        return $this->getGrouppedParameters()->has('path');
+    }
+
+    /**
+     * @return \App\Metadata\Parameter[]
+     */
+    public function getPathParameters(): array
+    {
+        return $this->getParametrsByLocation('path');
+    }
+
+    public function hasQueryParameters(): bool
+    {
+        return $this->getGrouppedParameters()->has('query');
+    }
+
     /**
      * @return \App\Metadata\Parameter[]
      */
     public function getQueryParameters(): array
     {
         return $this->getParametrsByLocation('query');
+    }
+
+    public function hasRequestBody(): bool
+    {
+        return $this->getGrouppedParameters()->has('body');
     }
 
     /**
@@ -55,12 +78,7 @@ abstract class Api
      */
     public function getParametrsByLocation(string $location): array
     {
-        if ($this->grouppedParameters === null) {
-            $this->grouppedParameters = collect($this->definition['parameters'])
-                ->groupBy('in');
-        }
-
-        if (! $this->grouppedParameters->has($location)) {
+        if (! $this->getGrouppedParameters()->has($location)) {
             return [];
         }
 
@@ -69,6 +87,16 @@ abstract class Api
         return $this->grouppedParameters[$location]
             ->map(fn (array $definition): Parameter => new Parameter($definition, $reader))
             ->all();
+    }
+
+    private function getGrouppedParameters(): Collection
+    {
+        if ($this->grouppedParameters === null) {
+            $this->grouppedParameters = collect($this->definition['parameters'])
+                ->groupBy('in');
+        }
+
+        return $this->grouppedParameters;
     }
 
     /**
