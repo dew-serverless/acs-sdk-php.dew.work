@@ -13,7 +13,7 @@
 
 <div class="leading-none">
     <div class="inline-flex items-center pl-4 pr-6 py-3 text-sm text-white bg-slate-100 rounded-md">
-        <div class="px-5 py-2 text-center {{ $methodBg }} leading-none rounded-md w-20">
+        <div class="px-5 py-2 text-center {{ $methodBg }} leading-none rounded-md">
             {{ $method }}
         </div>
 
