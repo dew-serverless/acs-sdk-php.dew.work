@@ -5,7 +5,7 @@ namespace App\Metadata;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-class Api
+abstract class Api
 {
     /**
      * @var array<string, mixed[]>
@@ -16,8 +16,8 @@ class Api
      * @param  array<string, mixed>  $definition
      */
     public function __construct(
-        private readonly string $name,
-        private readonly array $definition
+        protected readonly string $name,
+        protected readonly array $definition
     ) {
         //
     }
@@ -26,6 +26,11 @@ class Api
     {
         return $this->name;
     }
+
+    /**
+     * @return \App\Metadata\HttpInvocation[]
+     */
+    abstract function getHttpInvocations(): array;
 
     /**
      * @return mixed[]

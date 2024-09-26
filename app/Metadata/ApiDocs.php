@@ -39,6 +39,9 @@ readonly class ApiDocs
             ));
         }
 
-        return new Api($api, $docs['apis'][$api]);
+        return match ($docs['info']['style'] ?? null) {
+            'RPC' => new RpcApi($api, $docs['apis'][$api]),
+            default => new RoaApi($api, $docs['apis'][$api]),
+        };
     }
 }

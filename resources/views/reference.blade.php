@@ -20,11 +20,11 @@
                         {{ $api->title }}
                     </h1>
 
-                    @foreach ($api->methods as $method)
+                    @foreach ($api->getHttpInvocations() as $invocation)
                         <div class="mt-5">
                             <x-http.invocation
-                                method="{{ strtoupper($method) }}"
-                                endpoint="/{{ $api->getName() }}"
+                                :method="$invocation->method"
+                                :endpoint="$invocation->endpoint"
                             />
                         </div>
                     @endforeach
