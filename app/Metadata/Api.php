@@ -12,6 +12,8 @@ abstract class Api
      */
     private ?Collection $grouppedParameters = null;
 
+    private SchemaFinder $schemaFinder;
+
     /**
      * @param  array<string, mixed>  $definition
      */
@@ -33,7 +35,7 @@ abstract class Api
     abstract function getHttpInvocations(): array;
 
     /**
-     * @return mixed[]
+     * @return \App\Metadata\Parameter[]
      */
     public function getQueryParameters(): array
     {
@@ -41,7 +43,15 @@ abstract class Api
     }
 
     /**
-     * @return mixed[]
+     * @return \App\Metadata\Parameter|null
+     */
+    public function getRequestBody(): ?Parameter
+    {
+        return $this->getParametrsByLocation('body')[0] ?? null;
+    }
+
+    /**
+     * @return \App\Metadata\Parameter[]
      */
     public function getParametrsByLocation(string $location): array
     {
@@ -54,7 +64,17 @@ abstract class Api
             return [];
         }
 
-        return $this->grouppedParameters[$location]->all();
+        return $this->grouppedParameters[$location]
+            ->map(fn (array $definition): Parameter => (new Parameter($definition))
+                ->setSchemaFinder($this->schemaFinder))
+            ->all();
+    }
+
+    public function setSchemaFinder(SchemaFinder $finder): self
+    {
+        $this->schemaFinder = $finder;
+
+        return $this;
     }
 
     public function __get(string $property): mixed

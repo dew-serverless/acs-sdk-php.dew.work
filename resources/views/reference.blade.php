@@ -60,6 +60,19 @@
                             </div>
                         @endforeach
                     @endif
+
+                    @if ($api->getRequestBody() !== null)
+                        <h3 class="mt-16 font-bold text-xl">
+                            {{ __('Body') }}
+                        </h3>
+
+                        <div class="mt-10 max-w-xl">
+                            <x-api.schema
+                                :schema="$api->getRequestBody()->getSchema()"
+                                :markdown="$markdown"
+                            />
+                        </div>
+                    @endif
                 </section>
 
                 <section class="mt-16">

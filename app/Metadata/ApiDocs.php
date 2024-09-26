@@ -39,9 +39,11 @@ readonly class ApiDocs
             ));
         }
 
-        return match ($docs['info']['style'] ?? null) {
+        $instance = match ($docs['info']['style'] ?? null) {
             'RPC' => new RpcApi($api, $docs['apis'][$api]),
             default => new RoaApi($api, $docs['apis'][$api]),
         };
+
+        return $instance->setSchemaFinder(new SchemaFinder($docs));
     }
 }

@@ -14,12 +14,14 @@
             {{ $schema['items']['type'] }}
         </x-slot:child-type>
 
-        <div class="mt-7">
-            <x-api.schema
-                :schema="$schema['items']"
-                :markdown="$markdown"
-                :compact="true"
-            />
+        <div class="pl-7 border-l border-l-slate-300 border-solid">
+            <div class="mt-7">
+                <x-api.schema
+                    :schema="$schema['items']"
+                    :markdown="$markdown"
+                    :compact="true"
+                />
+            </div>
         </div>
     @endif
 </x-api.schema.base>
