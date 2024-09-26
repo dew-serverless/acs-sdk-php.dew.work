@@ -18,11 +18,19 @@ class ReferenceController extends Controller
         ApiDocs $docs,
         GithubFlavoredMarkdownConverter $markdown
     ): View {
+        $locale = $request->session()->get('locale', 'en');
+
+        $language = match ($locale) {
+            'zh_Hans' => 'zh_cn',
+            default => 'en_us',
+        };
+
         try {
             $api = $docs->findApi(
                 $request->route('product'),
                 $request->route('version'),
-                $request->route('api')
+                $request->route('api'),
+                $language
             );
 
             return view('reference', [

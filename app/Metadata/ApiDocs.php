@@ -13,10 +13,14 @@ readonly class ApiDocs
         //
     }
 
-    public function findApi(string $product, string $version, string $api): Api
-    {
+    public function findApi(
+        string $product,
+        string $version,
+        string $api,
+        string $language = 'en_us'
+    ): Api {
         $path = resource_path(sprintf('metadata/%s/%s/%s/api-docs.php',
-            'en_us', $product, $version
+            $language, $product, $version
         ));
 
         if (! $this->files->exists($path)) {
