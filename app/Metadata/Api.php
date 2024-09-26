@@ -64,10 +64,26 @@ abstract class Api
             return [];
         }
 
+        $reader = new SchemaReader($this->schemaFinder);
+
         return $this->grouppedParameters[$location]
-            ->map(fn (array $definition): Parameter => (new Parameter($definition))
-                ->setSchemaFinder($this->schemaFinder))
+            ->map(fn (array $definition): Parameter => new Parameter($definition, $reader))
             ->all();
+    }
+
+    /**
+     * @return \App\Metadata\Response|null
+     */
+    public function getResponse(string $code): ?Response
+    {
+        if (! isset($this->definition['responses'][$code])) {
+            return null;
+        }
+
+        return new Response(
+            $this->definition['responses'][$code],
+            new SchemaReader($this->schemaFinder)
+        );
     }
 
     public function setSchemaFinder(SchemaFinder $finder): self

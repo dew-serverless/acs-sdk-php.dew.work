@@ -96,7 +96,7 @@
                         <div class="mt-10 max-w-xl">
                             <x-api.schema
                                 name="{}"
-                                :schema="$api->responses['200']['schema']"
+                                :schema="$api->getResponse('200')->getSchema()"
                                 :markdown="$markdown"
                             />
                         </div>

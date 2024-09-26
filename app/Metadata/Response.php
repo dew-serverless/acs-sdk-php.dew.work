@@ -4,7 +4,7 @@ namespace App\Metadata;
 
 use Illuminate\Support\Arr;
 
-class Parameter
+class Response
 {
     /**
      * @param  array<string, mixed>  $definition
