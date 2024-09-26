@@ -53,8 +53,8 @@
                         @foreach ($api->getQueryParameters() as $parameter)
                             <div class="mt-10 max-w-xl">
                                 <x-api.schema
-                                    :name="$parameter['name']"
-                                    :schema="$parameter['schema']"
+                                    :name="$parameter->name"
+                                    :schema="$parameter->getSchema()"
                                     :markdown="$markdown"
                                 />
                             </div>
