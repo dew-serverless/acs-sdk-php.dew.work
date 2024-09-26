@@ -7,6 +7,8 @@
         <title>{{ $api->title }} - {{ $version }} - {{ $product }} - ACS SDK PHP</title>
 
         @vite('resources/css/app.css')
+
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="container mx-auto pt-16 pb-32 max-w-3xl">
@@ -91,32 +93,64 @@
                     @endif
                 </section>
 
-                <section class="mt-16">
+                <section
+                    class="mt-16"
+                    x-data="{
+                        response: '{{ $api->firstResponseCode() }}'
+                    }"
+                >
                     <div class="flex">
                         <h2 class="font-bold text-3xl">
                             {{ __('Response') }}
                         </h2>
 
-                        <div class="ml-8 flex">
-                            <div class="px-4 font-bold text-base text-white bg-emerald-600 leading-9 rounded-md cursor-pointer">
-                                200
-                            </div>
+                        <div class="ml-8 flex space-x-2">
+                            @foreach ($api->responses as $status => $response)
+                                <div
+                                    x-data="{
+                                        status: '{{ $status }}',
+                                        current: false,
+                                        get isSuccessful() { return this.status[0] === '2' },
+                                        get isClientError() { return this.status[0] === '4' },
+                                        get isServerError() { return this.status[0] === '5' }
+                                    }"
+                                    x-effect="current = response === status"
+                                    class="px-4 text-base leading-9 rounded-md cursor-pointer"
+                                    :class="{
+                                        'font-bold text-white': current,
+
+                                        'bg-emerald-600': isSuccessful && current,
+                                        'text-emerald-600 hover:bg-emerald-100': isSuccessful && !current,
+
+                                        'bg-amber-600': isClientError && current,
+                                        'text-amber-600 hover:bg-amber-100': isClientError && !current,
+
+                                        'bg-rose-600': isServerError && current,
+                                        'text-rose-600 hover:bg-rose-100': isServerError && !current,
+                                    }"
+                                    @click="response = status"
+                                >
+                                    {{ $status }}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    @if (isset($api->responses['200']['schema']))
-                        <h3 class="mt-16 font-bold text-xl">
-                            {{ __('Body') }}
-                        </h3>
+                    <h3 class="mt-16 font-bold text-xl">
+                        {{ __('Body') }}
+                    </h3>
 
-                        <div class="mt-10 max-w-xl">
-                            <x-api.schema
-                                name="{}"
-                                :schema="$api->getResponse('200')->getSchema()"
-                                :markdown="$markdown"
-                            />
-                        </div>
-                    @endif
+                    <div class="mt-10 max-w-xl">
+                        @foreach ($api->responses as $status => $response)
+                            <div x-show="response === '{{ $status }}'">
+                                <x-api.schema
+                                    name="{}"
+                                    :schema="$api->getResponse($status)->getSchema()"
+                                    :markdown="$markdown"
+                                />
+                            </div>
+                        @endforeach
+                    </div>
                 </section>
             </article>
         </div>

@@ -114,6 +114,21 @@ abstract class Api
         );
     }
 
+    public function firstResponseCode(): ?string
+    {
+        if (! isset($this->definition['responses'])) {
+            return null;
+        }
+
+        $codes = array_keys($this->definition['responses']);
+
+        if (! isset($codes[0])) {
+            return null;
+        }
+
+        return (string) $codes[0];
+    }
+
     public function setSchemaFinder(SchemaFinder $finder): self
     {
         $this->schemaFinder = $finder;
