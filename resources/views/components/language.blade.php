@@ -2,7 +2,7 @@
     'current',
     'languages' => [
         ['locale' => 'en', 'label' => 'English'],
-        ['locale' => 'zh_Hans', 'label' => 'Simplified Chinese'],
+        ['locale' => 'zh_Hans', 'label' => '简体中文'],
     ],
 ])
 
