@@ -11,7 +11,11 @@
     <body class="font-sans antialiased">
         <div class="container mx-auto pt-16 pb-32 max-w-3xl">
             <article class="px-4">
-                <header>
+                <x-language
+                    current="{{ App::currentLocale() }}"
+                />
+
+                <header class="mt-2">
                     <h1 class="font-black text-4xl leading-snug text-gray-800">
                         {{ $api->title }}
                     </h1>
