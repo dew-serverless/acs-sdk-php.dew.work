@@ -124,6 +124,15 @@
                     </div>
                 </div>
 
+                @foreach ($api->responses as $status => $response)
+                    <p
+                        class="mt-10 text-lg text-gray-600"
+                        x-show="response === '{{ $status }}'"
+                    >
+                        {{ $response['description'] }}
+                    </p>
+                @endforeach
+
                 <h3 class="mt-16 font-bold text-xl">
                     {{ __('Body') }}
                 </h3>
