@@ -1,6 +1,7 @@
 {
     "Request": "请求",
     "Path Parameters": "路径参数",
+    "Header Parameters": "标头参数",
     "Query Parameters": "查询参数",
     "Response": "响应",
     "Body": "主体",

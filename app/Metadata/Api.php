@@ -47,6 +47,19 @@ abstract class Api
         return $this->getParametrsByLocation('path');
     }
 
+    public function hasHeaderParameters(): bool
+    {
+        return $this->getGrouppedParameters()->has('header');
+    }
+
+    /**
+     * @return \App\Metadata\Parameter[]
+     */
+    public function getHeaderParameters(): array
+    {
+        return $this->getParametrsByLocation('header');
+    }
+
     public function hasQueryParameters(): bool
     {
         return $this->getGrouppedParameters()->has('query');

@@ -1,6 +1,7 @@
 {
     "Request": "Request",
     "Path Parameters": "Path Parameters",
+    "Header Parameters": "Header Parameters",
     "Query Parameters": "Query Parameters",
     "Response": "Response",
     "Body": "Body",
