@@ -157,7 +157,6 @@
                     @foreach ($api->responses as $status => $response)
                         <div x-show="response === '{{ $status }}'">
                             <x-api.schema
-                                name="{}"
                                 :schema="$api->getResponse($status)->getSchema()"
                                 :markdown="$markdown"
                             />

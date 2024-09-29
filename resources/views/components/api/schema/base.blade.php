@@ -1,5 +1,5 @@
 @props([
-    'name' => '*',
+    'name' => null,
     'schema',
     'markdown',
 
@@ -12,12 +12,14 @@
 
 @unless ($compact)
     <header class="flex items-center">
-        <h4 class="font-bold text-base">
-            {{ $name }}
-        </h4>
+        @if ($name !== null)
+            <h4 class="font-bold text-base">
+                {{ $name }}
+            </h4>
+        @endif
 
         @if (isset($schema['type']))
-            <div class="ml-2 text-sm text-slate-600">
+            <div class="ml-2 text-sm text-slate-600 first:ml-0">
                 @if ($childType === null)
                     {{ $schema['type']}}
                 @else
