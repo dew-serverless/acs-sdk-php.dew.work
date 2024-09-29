@@ -149,18 +149,22 @@
                     </p>
                 @endforeach
 
-                <h3 class="mt-16 font-bold text-xl">
-                    {{ __('Body') }}
-                </h3>
-
-                <div class="mt-10 max-w-xl">
+                <div class="mt-16 max-w-xl">
                     @foreach ($api->responses as $status => $response)
-                        <div x-show="response === '{{ $status }}'">
-                            <x-api.schema
-                                :schema="$api->getResponse($status)->getSchema()"
-                                :markdown="$markdown"
-                            />
-                        </div>
+                        @if (isset($response['schema']))
+                            <div x-show="response === '{{ $status }}'">
+                                <h3 class="font-bold text-xl">
+                                    {{ __('Body') }}
+                                </h3>
+
+                                <div class="mt-10">
+                                    <x-api.schema
+                                        :schema="$api->getResponse($status)->getSchema()"
+                                        :markdown="$markdown"
+                                    />
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </section>
