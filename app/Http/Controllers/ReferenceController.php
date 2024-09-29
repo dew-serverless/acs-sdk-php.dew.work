@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Metadata\ApiDocs;
+use App\Metadata\ApiDocsResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
@@ -15,7 +15,7 @@ class ReferenceController extends Controller
      */
     public function __invoke(
         Request $request,
-        ApiDocs $docs,
+        ApiDocsResolver $resolver,
         GithubFlavoredMarkdownConverter $markdown
     ): View {
         $locale = $request->session()->get('locale', 'en');
@@ -26,17 +26,19 @@ class ReferenceController extends Controller
         };
 
         try {
-            $api = $docs->findApi(
+            $docs = $resolver->resolve(
                 $request->route('product'),
                 $request->route('version'),
-                $request->route('api'),
                 $language
             );
+
+            $api = $docs->getApi($request->route('api'));
 
             return view('reference', [
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
                 'api' => $api,
+                'directories' => $docs->directories ?? [],
                 'markdown' => $markdown,
             ]);
         } catch (InvalidArgumentException $e) {

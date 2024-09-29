@@ -1,0 +1,38 @@
+@props([
+    'definition',
+    'displayDivider' => false,
+])
+
+@if ($displayDivider)
+    <div class="m-4 h-px bg-slate-200 first:bg-transparent"></div>
+@endif
+
+@if (isset($definition['title']))
+    <h1 class="px-4 py-2 font-bold text-slate-400 text-sm">
+        {{ $definition['title'] }}
+    </h1>
+@endif
+
+@if (
+    ($definition['type'] ?? null) === 'directory' &&
+    is_array($definition['children'] ?? null)
+)
+    <ul>
+        @foreach ($definition['children'] as $item)
+            @if (is_string($item))
+                <li>
+                    <a
+                        href="/references/{{ Request::route('product') }}/{{ Request::route('version') }}/{{ $item }}"
+                        class="block py-2 px-4 text-base leading-tight overflow-hidden overflow-ellipsis cursor-pointer {{ Request::route('api') === $item ? 'text-sky-600 font-bold' : 'text-slate-600 hover:text-slate-400' }}"
+                    >
+                        {{ $item }}
+                    </a>
+                </li>
+            @elseif (is_array($item))
+                <x-sidebar.navigation
+                    :definition="$item"
+                />
+            @endif
+        @endforeach
+    </ul>
+@endif

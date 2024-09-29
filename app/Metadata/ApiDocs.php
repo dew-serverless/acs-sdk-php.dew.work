@@ -2,48 +2,36 @@
 
 namespace App\Metadata;
 
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 readonly class ApiDocs
 {
+    /**
+     * @param  array<string, mixed>  $definition
+     */
     public function __construct(
-        private Filesystem $files
+        private array $definition
     ) {
         //
     }
 
-    public function findApi(
-        string $product,
-        string $version,
-        string $api,
-        string $language = 'en_us'
-    ): Api {
-        $path = resource_path(sprintf('metadata/%s/%s/%s/api-docs.php',
-            $language, $product, $version
-        ));
-
-        if (! $this->files->exists($path)) {
-            throw new InvalidArgumentException(sprintf(
-                'Could not find API docs file for product %s with version %s.',
-                $product, $version
-            ));
+    public function getApi(string $name): Api
+    {
+        if (! isset($this->apis[$name])) {
+            throw new InvalidArgumentException("Could not find $name API.");
         }
 
-        $docs = require $path;
-
-        if (! isset($docs['apis'][$api])) {
-            throw new InvalidArgumentException(sprintf(
-                'Could not find %s API in product %s with version %s.',
-                $api, $product, $version
-            ));
-        }
-
-        $instance = match ($docs['info']['style'] ?? null) {
-            'RPC' => new RpcApi($api, $docs['apis'][$api]),
-            default => new RoaApi($api, $docs['apis'][$api]),
+        $instance = match ($this->info['style'] ?? null) {
+            'RPC' => new RpcApi($name, $this->apis[$name]),
+            default => new RoaApi($name, $this->apis[$name]),
         };
 
-        return $instance->setSchemaFinder(new SchemaFinder($docs));
+        return $instance->setSchemaFinder(new SchemaFinder($this->definition));
+    }
+
+    public function __get(string $property): mixed
+    {
+        return Arr::get($this->definition, $property);
     }
 }
