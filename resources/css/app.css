@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 .markdown {
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold;
+    }
+
     ul {
         @apply pl-5 list-disc;
     }
@@ -25,7 +29,11 @@
 }
 
 .markdown-loose {
-    p, ul, li {
+    h1, h2, h3, h4, h5, h6 {
+        @apply mt-7;
+    }
+
+    p, ul, li, table {
         @apply mt-5;
     }
 
@@ -35,7 +43,11 @@
 }
 
 .markdown-base {
-    p, ul, li {
+    h1, h2, h3, h4, h5, h6 {
+        @apply mt-5;
+    }
+
+    p, ul, li, table {
         @apply mt-3;
     }
 
