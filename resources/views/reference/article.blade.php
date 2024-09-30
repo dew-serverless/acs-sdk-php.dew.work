@@ -167,11 +167,11 @@
                     @endif
                 @endforeach
 
-                <div class="mt-16 max-w-xl">
+                <div class="max-w-xl">
                     @foreach ($api->responses as $status => $response)
                         <div x-show="response === '{{ $status }}'">
                             @if (isset($response['headers']))
-                                <h3 class="font-bold text-xl">
+                                <h3 class="mt-16 font-bold text-xl">
                                     {{ __('HTTP Headers') }}
                                 </h3>
 
@@ -189,7 +189,7 @@
                             @endif
 
                             @if (isset($response['schema']))
-                                <h3 class="font-bold text-xl">
+                                <h3 class="mt-16 font-bold text-xl">
                                     {{ __('Body') }}
                                 </h3>
 
