@@ -141,12 +141,14 @@
                 </div>
 
                 @foreach ($api->responses as $status => $response)
-                    <p
-                        class="mt-10 text-lg text-gray-600"
-                        x-show="response === '{{ $status }}'"
-                    >
-                        {{ $response['description'] }}
-                    </p>
+                    @if (is_string($response['description'] ?? null))
+                        <p
+                            class="mt-10 text-lg text-gray-600"
+                            x-show="response === '{{ $status }}'"
+                        >
+                            {{ $response['description'] }}
+                        </p>
+                    @endif
                 @endforeach
 
                 <div class="mt-16 max-w-xl">
