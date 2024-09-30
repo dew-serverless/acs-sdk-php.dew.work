@@ -15,6 +15,18 @@
         @apply text-slate-300;
     }
 
+    table {
+        @apply table-auto text-sm;
+    }
+
+    th, td {
+        @apply px-2 py-4;
+    }
+
+    tbody tr {
+        @apply border-t border-solid border-slate-200;
+    }
+
     code {
         @apply py-1 px-2 text-slate-600 bg-slate-100 rounded-md;
     }
