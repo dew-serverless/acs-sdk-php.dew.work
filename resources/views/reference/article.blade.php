@@ -169,8 +169,26 @@
 
                 <div class="mt-16 max-w-xl">
                     @foreach ($api->responses as $status => $response)
-                        @if (isset($response['schema']))
-                            <div x-show="response === '{{ $status }}'">
+                        <div x-show="response === '{{ $status }}'">
+                            @if (isset($response['headers']))
+                                <h3 class="font-bold text-xl">
+                                    {{ __('HTTP Headers') }}
+                                </h3>
+
+                                @foreach ($response['headers'] as $name => $header)
+                                    @if (isset($header['schema']))
+                                        <div class="mt-10">
+                                            <x-api.schema
+                                                :name="$name"
+                                                :schema="$header['schema']"
+                                                :markdown="$markdown"
+                                            />
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                            @if (isset($response['schema']))
                                 <h3 class="font-bold text-xl">
                                     {{ __('Body') }}
                                 </h3>
@@ -181,8 +199,8 @@
                                         :markdown="$markdown"
                                     />
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     @endforeach
                 </div>
             </section>

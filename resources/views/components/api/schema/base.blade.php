@@ -36,10 +36,16 @@
     </header>
 @endunless
 
-@if (! $compact && isset($schema['description']) && $schema['description'] !== '')
-    <div class="mt-3 text-sm text-slate-600 markdown markdown-base">
-        {!! $markdown->convert($schema['description']) !!}
-    </div>
+@if (! $compact)
+    @if (($schema['description'] ?? '') !== '')
+        <div class="mt-3 text-sm text-slate-600 markdown markdown-base">
+            {!! $markdown->convert($schema['description']) !!}
+        </div>
+    @elseif (($schema['title'] ?? '') !== '')
+        <div class="mt-3 text-sm text-slate-600">
+            {{ $schema['title'] }}
+        </div>
+    @endif
 @endif
 
 @if (isset($schema['example']))

@@ -8,5 +8,6 @@
     "Body": "Body",
     "required": "required",
     "Example:": "Example:",
-    "Default:": "Default:"
+    "Default:": "Default:",
+    "HTTP Headers": "HTTP Headers"
 }

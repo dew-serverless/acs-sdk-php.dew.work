@@ -8,5 +8,6 @@
     "Body": "主体",
     "required": "必要",
     "Example:": "示例：",
-    "Default:": "默认："
+    "Default:": "默认：",
+    "HTTP Headers": "HTTP 标头"
 }
