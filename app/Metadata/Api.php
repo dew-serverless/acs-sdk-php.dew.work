@@ -34,6 +34,19 @@ abstract class Api
      */
     abstract function getHttpInvocations(): array;
 
+    public function hasHostParameters(): bool
+    {
+        return $this->getGrouppedParameters()->has('host');
+    }
+
+    /**
+     * @return \App\Metadata\Parameter[]
+     */
+    public function getHostParameters(): array
+    {
+        return $this->getParametrsByLocation('host');
+    }
+
     public function hasPathParameters(): bool
     {
         return $this->getGrouppedParameters()->has('path');
