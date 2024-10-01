@@ -17,6 +17,7 @@
         <div class="pl-7 border-l border-l-slate-300 border-solid">
             <div class="mt-7">
                 <x-api.schema
+                    name="*"
                     :schema="$schema['items']"
                     :markdown="$markdown"
                     :compact="true"
