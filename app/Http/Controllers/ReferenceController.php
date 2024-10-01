@@ -2,34 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DocumentationRequest;
 use App\Metadata\ApiDocsResolver;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 class ReferenceController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(
-        Request $request,
-        ApiDocsResolver $resolver,
-        GithubFlavoredMarkdownConverter $markdown
-    ): View {
-        $locale = $request->session()->get('locale', 'en');
-
-        $language = match ($locale) {
-            'zh_Hans' => 'zh_cn',
-            default => 'en_us',
-        };
-
+    public function index(DocumentationRequest $request, ApiDocsResolver $resolver): RedirectResponse
+    {
         try {
             $docs = $resolver->resolve(
                 $request->route('product'),
                 $request->route('version'),
-                $language
+                $request->language()
+            );
+
+            $api = collect($docs->apis)
+                ->whenEmpty(fn () => abort(404))
+                ->keys()
+                ->first();
+
+            return redirect()->route('reference.show', [
+                'product' => $request->route('product'),
+                'version' => $request->route('version'),
+                'api' => $api,
+            ]);
+        } catch (InvalidArgumentException $e) {
+            abort(404);
+        }
+    }
+
+    public function show(
+        DocumentationRequest $request,
+        ApiDocsResolver $resolver,
+        GithubFlavoredMarkdownConverter $markdown
+    ): View {
+        try {
+            $docs = $resolver->resolve(
+                $request->route('product'),
+                $request->route('version'),
+                $request->language()
             );
 
             $api = $docs->getApi($request->route('api'));
