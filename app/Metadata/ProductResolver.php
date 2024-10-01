@@ -38,6 +38,14 @@ class ProductResolver
     /**
      * @return array<int, mixed[]>
      */
+    public function all(string $language): array
+    {
+        return $this->get($language);
+    }
+
+    /**
+     * @return array<int, mixed[]>
+     */
     private function get(string $language): array
     {
         if ($this->data === null) {

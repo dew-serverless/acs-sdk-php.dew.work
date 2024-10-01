@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentationRequest;
 use App\Metadata\ApiDocsResolver;
+use App\Metadata\ProductResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -39,6 +40,7 @@ class ReferenceController extends Controller
     public function show(
         DocumentationRequest $request,
         ApiDocsResolver $resolver,
+        ProductResolver $products,
         GithubFlavoredMarkdownConverter $markdown
     ): View {
         try {
@@ -51,6 +53,7 @@ class ReferenceController extends Controller
             $api = $docs->getApi($request->route('api'));
 
             return view('reference', [
+                'products' => $products->all($request->language()),
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
                 'api' => $api,
