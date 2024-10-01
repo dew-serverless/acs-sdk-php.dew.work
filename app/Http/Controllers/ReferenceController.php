@@ -26,7 +26,7 @@ class ReferenceController extends Controller
                 ->keys()
                 ->first();
 
-            return redirect()->route('reference.show', [
+            return redirect()->route('references.apis.show', [
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
                 'api' => $api,
