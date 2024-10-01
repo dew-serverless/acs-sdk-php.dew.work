@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <div>
+    <div class="mt-4">
         @foreach ($directories as $directory)
             <x-sidebar.navigation
                 :definition="$directory"

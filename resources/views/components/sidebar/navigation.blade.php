@@ -3,7 +3,7 @@
     'displayDivider' => false,
 ])
 
-@if ($displayDivider)
+@if ($displayDivider && is_array($definition))
     <div class="m-4 h-px bg-slate-200 first:bg-transparent"></div>
 @endif
 
@@ -14,6 +14,7 @@
 @endif
 
 @if (
+    is_array($definition) &&
     ($definition['type'] ?? null) === 'directory' &&
     is_array($definition['children'] ?? null)
 )
@@ -35,4 +36,11 @@
             @endif
         @endforeach
     </ul>
+@elseif (is_string($definition))
+    <a
+        href="/references/{{ Request::route('product') }}/{{ Request::route('version') }}/{{ $definition }}"
+        class="block py-2 px-4 text-base leading-tight overflow-hidden overflow-ellipsis cursor-pointer {{ Request::route('api') === $definition ? 'text-sky-600 font-bold' : 'text-slate-600 hover:text-slate-400' }}"
+    >
+        {{ $definition }}
+    </a>
 @endif
