@@ -28,7 +28,7 @@
     }
 
     code {
-        @apply py-1 px-2 text-slate-600 bg-slate-100 rounded-md;
+        @apply inline-block py-1 px-2 text-slate-600 bg-slate-100 text-pretty rounded-md;
     }
 
     a {
