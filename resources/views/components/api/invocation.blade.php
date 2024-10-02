@@ -1,4 +1,7 @@
-@props(['method', 'endpoint'])
+@props([
+    'method',
+    'endpoint',
+])
 
 @php
     $methodBg = match (strtoupper($method)) {

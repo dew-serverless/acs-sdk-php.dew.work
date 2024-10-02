@@ -10,7 +10,7 @@
 
                 @foreach ($api->getHttpInvocations() as $invocation)
                     <div class="mt-5">
-                        <x-http.invocation
+                        <x-api.invocation
                             :method="$invocation->method"
                             :endpoint="$invocation->endpoint"
                         />
