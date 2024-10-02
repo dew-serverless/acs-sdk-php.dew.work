@@ -46,7 +46,7 @@ class ProductResolver
     /**
      * @return array<int, mixed[]>
      */
-    private function get(string $language): array
+    public function get(string $language): array
     {
         if ($this->data === null) {
             $this->data = $this->make($language);
@@ -74,7 +74,7 @@ class ProductResolver
                 }
 
                 $data = [];
-                $products = require $path;
+                $products = $this->files->getRequire($path);
 
                 foreach ($products as $product) {
                     $code = strtolower($product['code']);

@@ -6,6 +6,9 @@ use Illuminate\Support\Arr;
 
 readonly class Product
 {
+    /**
+     * @param  array<string, mixed>  $info
+     */
     public function __construct(
         private array $info
     ) {

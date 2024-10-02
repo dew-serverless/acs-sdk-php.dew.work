@@ -26,6 +26,6 @@ class ApiDocsResolver
             ));
         }
 
-        return new ApiDocs(require $path);
+        return new ApiDocs($this->files->getRequire($path));
     }
 }
