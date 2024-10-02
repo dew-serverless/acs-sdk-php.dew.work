@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DocumentationRequest extends FormRequest
 {
+    /**
+     * The documentation language.
+     */
     public function language(): string
     {
         $locale = $this->session()->get('locale', 'en');
