@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use InvalidArgumentException;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
-class ReferenceController extends Controller
+class ReferenceController
 {
     public function index(DocumentationRequest $request, ApiDocsResolver $resolver): RedirectResponse
     {

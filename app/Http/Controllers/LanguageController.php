@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class LanguageController extends Controller
+class LanguageController
 {
     /**
      * Switch the language.

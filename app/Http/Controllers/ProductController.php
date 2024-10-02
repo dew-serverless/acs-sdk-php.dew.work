@@ -7,7 +7,7 @@ use App\Metadata\ProductResolver;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 
-class ProductController extends Controller
+class ProductController
 {
     public function show(DocumentationRequest $request, ProductResolver $resolver): mixed
     {
