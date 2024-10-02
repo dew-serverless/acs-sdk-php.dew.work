@@ -20,15 +20,17 @@
                 @endforeach
             </header>
 
-            <section class="pt-16 text-lg text-gray-600 markdown markdown-loose">
-                @if ($api->summary !== null)
-                    <p>{{ $api->summary }}</p>
-                @endif
+            @if ($api->summary !== null || $api->description !== null)
+                <section class="pt-16 text-lg text-gray-600 markdown markdown-loose">
+                    @if ($api->summary !== null)
+                        <p>{{ $api->summary }}</p>
+                    @endif
 
-                @if ($api->description !== null)
-                    {!! $markdown->convert($api->description) !!}
-                @endif
-            </section>
+                    @if ($api->description !== null)
+                        {!! $markdown->convert($api->description) !!}
+                    @endif
+                </section>
+            @endif
 
             <section class="mt-16">
                 <h2 class="font-bold text-3xl">
