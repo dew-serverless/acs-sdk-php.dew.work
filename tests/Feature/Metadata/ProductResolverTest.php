@@ -18,9 +18,9 @@ test('resolve resolves and caches product data', function () {
         ]);
     $cache = new Repository(new ArrayStore());
     $resolver = new ProductResolver($mockedFiles, $cache);
-    expect($cache->missing('products'))->toBeTrue()
+    expect($cache->missing('products.en_us'))->toBeTrue()
         ->and($resolver->resolve('foo', 'en_us'))->toBeInstanceOf(Product::class)
-        ->and($cache->has('products'))->toBeTrue();
+        ->and($cache->has('products.en_us'))->toBeTrue();
 });
 
 test('resolve code is case insensitive', function () {

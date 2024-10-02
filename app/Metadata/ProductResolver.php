@@ -61,7 +61,7 @@ class ProductResolver
     private function make(string $language): array
     {
         return $this->cache->rememberForever(
-            static::cacheKey(),
+            static::cacheKey($language),
             function () use ($language): array {
                 $path = resource_path(sprintf(
                     'metadata/%s/product.php', $language
@@ -86,8 +86,8 @@ class ProductResolver
             });
     }
 
-    public static function cacheKey(): string
+    public static function cacheKey(string $language): string
     {
-        return 'products';
+        return "products.$language";
     }
 }
