@@ -8,7 +8,7 @@
             <x-api.schema
                 :name="$parameter->name"
                 :schema="$parameter->getSchema()"
-                :markdown
+                :markdown="$markdown"
             />
         </div>
     @endforeach
