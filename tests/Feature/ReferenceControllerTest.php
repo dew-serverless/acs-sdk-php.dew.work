@@ -1,0 +1,53 @@
+<?php
+
+use App\Metadata\ApiDocs;
+use App\Metadata\ApiDocsResolver;
+
+describe('index', function () {
+    it('redirects to the reference of the first api', function () {
+        $this->mock(ApiDocsResolver::class, function ($mock) {
+            $mock->expects()
+                ->resolve('foo', '1234', Mockery::any())
+                ->andReturns(testDocs(
+                    apis: ['one' => testApi()]
+                ));
+        });
+
+        $this->get('/references/foo/1234')
+            ->assertRedirect('/references/foo/1234/one');
+    });
+
+    it('returns 404 if docs does not have any apis', function () {
+        $this->mock(ApiDocsResolver::class, function ($mock) {
+            $mock->expects()
+                ->resolve('foo', '1234', Mockery::any())
+                ->andReturns(emptyDocs());
+        });
+
+        $this->get('/references/foo/1234')->assertNotFound();
+    });
+});
+
+describe('show', function () {
+    it('shows api reference page', function () {
+        $this->mock(ApiDocsResolver::class, function ($mock) {
+            $mock->expects()
+                ->resolve('foo', '1234', Mockery::any())
+                ->andReturns(testDocs(
+                    apis: ['test' => testApi()]
+                ));
+        });
+
+        $this->get('/references/foo/1234/test')->assertOk();
+    });
+
+    it('returns 404 if api does not exist', function () {
+        $this->mock(ApiDocsResolver::class, function ($mock) {
+            $mock->expects()
+                ->resolve('foo', '1234', Mockery::any())
+                ->andReturns(emptyDocs());
+        });
+
+        $this->get('/references/foo/1234/test')->assertNotFound();
+    });
+});

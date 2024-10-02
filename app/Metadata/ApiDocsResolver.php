@@ -5,7 +5,7 @@ namespace App\Metadata;
 use Illuminate\Filesystem\Filesystem;
 use InvalidArgumentException;
 
-readonly class ApiDocsResolver
+class ApiDocsResolver
 {
     public function __construct(
         private Filesystem $files
