@@ -8,10 +8,10 @@
 ])
 
 <x-api.schema.base
-    :name="$name"
-    :schema="$schema"
-    :markdown="$markdown"
-    :compact="$compact"
+    :$name
+    :$schema
+    :$markdown
+    :$compact
 >
     @if (isset($schema['properties']))
         <div class="{{ $compact ? '' : 'pl-7 border-l border-l-slate-300 border-solid' }}">

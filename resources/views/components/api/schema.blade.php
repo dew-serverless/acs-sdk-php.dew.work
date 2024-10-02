@@ -8,9 +8,9 @@
 @if (isset($schema['type']))
     <x-dynamic-component
         :component="'api.schema.'.$schema['type']"
-        :name="$name"
-        :schema="$schema"
-        :markdown="$markdown"
-        :compact="$compact"
+        :$name
+        :$schema
+        :$markdown
+        :$compact
     />
 @endif

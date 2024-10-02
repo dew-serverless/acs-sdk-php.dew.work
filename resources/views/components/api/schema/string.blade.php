@@ -5,7 +5,7 @@
 ])
 
 <x-api.schema.base
-    :name="$name"
-    :schema="$schema"
-    :markdown="$markdown"
+    :$name
+    :$schema
+    :$markdown
 />

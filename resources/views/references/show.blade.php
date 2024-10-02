@@ -12,9 +12,9 @@
     </head>
     <body class="font-sans antialiased">
         <div class="flex min-h-screen">
-            @include('reference.sidebar')
+            @include('references.sidebar')
 
-            @include('reference.article')
+            @include('references.article')
         </div>
     </body>
 </html>

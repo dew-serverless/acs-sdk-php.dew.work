@@ -52,7 +52,7 @@ class ReferenceController
 
             $api = $docs->getApi($request->route('api'));
 
-            return view('reference', [
+            return view('references.show', [
                 'products' => $products->all($request->language()),
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
