@@ -9,5 +9,6 @@
     "required": "required",
     "Example:": "Example:",
     "Default:": "Default:",
-    "HTTP Headers": "HTTP Headers"
+    "HTTP Headers": "HTTP Headers",
+    "The page is auto-generated with acs-metadata v:version - Openmeta :metadata": "The page is auto-generated with acs-metadata v:version - Openmeta :metadata"
 }

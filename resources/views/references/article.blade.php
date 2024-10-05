@@ -1,5 +1,5 @@
 <div class="ml-80">
-    <div class="ml-16 pt-16 px-4 pb-32 max-w-3xl">
+    <div class="ml-16 pt-16 px-4 pb-6 max-w-3xl">
         <x-language current="{{ App::currentLocale() }}" />
 
         <article>
@@ -22,5 +22,14 @@
 
             @include('references.response')
         </article>
+
+        <footer class="mt-32">
+            <p class="text-xs text-slate-600">
+                {{ __('The page is auto-generated with acs-metadata v:version - Openmeta :metadata', [
+                    'version' => $pkg_version,
+                    'metadata' => $pkg_metadata,
+                ]) }}
+            </p>
+        </footer>
     </div>
 </div>

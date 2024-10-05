@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentationRequest;
 use App\Metadata\ApiDocsResolver;
+use App\Metadata\Package;
 use App\Metadata\ProductResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,7 @@ class ReferenceController
         DocumentationRequest $request,
         ApiDocsResolver $resolver,
         ProductResolver $products,
+        Package $package,
         GithubFlavoredMarkdownConverter $markdown
     ): View {
         try {
@@ -59,6 +61,8 @@ class ReferenceController
                 'api' => $api,
                 'directories' => $docs->directories ?? [],
                 'markdown' => $markdown,
+                'pkg_version' => $package->version(),
+                'pkg_metadata' => $package->metadata(),
             ]);
         } catch (InvalidArgumentException $e) {
             abort(404);
