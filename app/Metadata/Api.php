@@ -86,6 +86,19 @@ abstract class Api
         return $this->getParametrsByLocation('query');
     }
 
+    public function hasFormParameters(): bool
+    {
+        return $this->getGrouppedParameters()->has('formData');
+    }
+
+    /**
+     * @return \App\Metadata\Parameter[]
+     */
+    public function getFormParameters(): array
+    {
+        return $this->getParametrsByLocation('formData');
+    }
+
     public function hasRequestBody(): bool
     {
         return $this->getGrouppedParameters()->has('body');

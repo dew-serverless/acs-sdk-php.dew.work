@@ -4,6 +4,7 @@
     "Path Parameters": "路径参数",
     "Header Parameters": "标头参数",
     "Query Parameters": "查询参数",
+    "FormData": "表单数据",
     "Response": "响应",
     "Body": "主体",
     "required": "必要",

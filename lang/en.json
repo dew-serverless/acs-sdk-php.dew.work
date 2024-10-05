@@ -4,6 +4,7 @@
     "Path Parameters": "Path Parameters",
     "Header Parameters": "Header Parameters",
     "Query Parameters": "Query Parameters",
+    "FormData": "FormData",
     "Response": "Response",
     "Body": "Body",
     "required": "required",
