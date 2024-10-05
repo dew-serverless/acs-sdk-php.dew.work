@@ -64,7 +64,7 @@ class ProductResolver
             static::cacheKey($language),
             function () use ($language): array {
                 $path = resource_path(sprintf(
-                    'metadata/%s/product.php', $language
+                    'metadata/%s/products.php', $language
                 ));
 
                 if ($this->files->missing($path)) {
