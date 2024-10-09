@@ -9,10 +9,10 @@ use Illuminate\Filesystem\Filesystem;
 test('resolve resolves and caches product data', function () {
     $mockedFiles = Mockery::mock(new Filesystem());
     $mockedFiles->expects()
-        ->missing(resource_path('metadata/en_us/product.php'))
+        ->missing(resource_path('metadata/en_us/products.php'))
         ->andReturns(false);
     $mockedFiles->expects()
-        ->getRequire(resource_path('metadata/en_us/product.php'))
+        ->getRequire(resource_path('metadata/en_us/products.php'))
         ->andReturns([
             ['code' => 'foo'],
         ]);
@@ -26,10 +26,10 @@ test('resolve resolves and caches product data', function () {
 test('resolve code is case insensitive', function () {
     $mockedFiles = Mockery::mock(new Filesystem());
     $mockedFiles->expects()
-        ->missing(resource_path('metadata/en_us/product.php'))
+        ->missing(resource_path('metadata/en_us/products.php'))
         ->andReturns(false);
     $mockedFiles->expects()
-        ->getRequire(resource_path('metadata/en_us/product.php'))
+        ->getRequire(resource_path('metadata/en_us/products.php'))
         ->andReturns([
             ['code' => 'foo'],
         ]);
@@ -44,7 +44,7 @@ test('resolve code is case insensitive', function () {
 test('resolve throws exception when does not have metadata in specific language', function () {
     $mockedFiles = Mockery::mock(new Filesystem());
     $mockedFiles->expects()
-        ->missing(resource_path('metadata/en_us/product.php'))
+        ->missing(resource_path('metadata/en_us/products.php'))
         ->andReturns(true);
     $cache = new Repository(new ArrayStore());
     $resolver = new ProductResolver($mockedFiles, $cache);
@@ -55,10 +55,10 @@ test('resolve throws exception when does not have metadata in specific language'
 test('resolve throws exception when product does not exist', function () {
     $mockedFiles = Mockery::mock(new Filesystem());
     $mockedFiles->expects()
-        ->missing(resource_path('metadata/en_us/product.php'))
+        ->missing(resource_path('metadata/en_us/products.php'))
         ->andReturns(false);
     $mockedFiles->expects()
-        ->getRequire(resource_path('metadata/en_us/product.php'))
+        ->getRequire(resource_path('metadata/en_us/products.php'))
         ->andReturns([]);
     $cache = new Repository(new ArrayStore());
     $resolver = new ProductResolver($mockedFiles, $cache);
