@@ -8,7 +8,6 @@ use App\Metadata\Package;
 use App\Metadata\ProductResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use InvalidArgumentException;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
@@ -29,6 +28,7 @@ class ReferenceController
                 ->first();
 
             return redirect()->route('references.apis.show', [
+                'locale' => $request->route('locale'),
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
                 'api' => $api,

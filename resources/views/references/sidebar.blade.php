@@ -68,7 +68,11 @@
                     @foreach ($product['versions'] as $version)
                         <a
                             {{ strtolower(Request::route('product')) === strtolower($product['code']) && Request::route('version') === $version ? 'x-ref=active' : null }}
-                            href="{{ route('references.apis.index', ['product' => strtolower($product['code']), 'version' => $version]) }}"
+                            href="{{ route('references.apis.index', [
+                                'locale' => Request::route('locale'),
+                                'product' => strtolower($product['code']),
+                                'version' => $version,
+                            ]) }}"
                             class="block px-4 py-2 cursor-pointer {{ strtolower(Request::route('product')) === strtolower($product['code']) && Request::route('version') === $version ? 'bg-slate-200' : 'hover:bg-slate-100' }}"
                             role="menuitem"
                             tabindex="-1"

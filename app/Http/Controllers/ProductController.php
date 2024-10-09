@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentationRequest;
 use App\Metadata\ProductResolver;
-use Illuminate\Http\Request;
 use InvalidArgumentException;
 
 class ProductController
@@ -18,6 +17,7 @@ class ProductController
             );
 
             return redirect()->route('references.apis.index', [
+                'locale' => $request->route('locale'),
                 'product' => $request->route('product'),
                 'version' => $product->defaultVersion,
             ]);

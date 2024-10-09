@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use InvalidArgumentException;
 
 class DocumentationRequest extends FormRequest
 {
@@ -11,11 +12,14 @@ class DocumentationRequest extends FormRequest
      */
     public function language(): string
     {
-        $locale = $this->session()->get('locale', 'en');
+        $locale = $this->route('locale');
 
         return match ($locale) {
-            'zh_Hans' => 'zh_cn',
-            default => 'en_us',
+            'zh-cn' => 'zh_cn',
+            'en-us' => 'en_us',
+            default => throw new InvalidArgumentException(
+                'Unsupported documentation language.'
+            ),
         };
     }
 }

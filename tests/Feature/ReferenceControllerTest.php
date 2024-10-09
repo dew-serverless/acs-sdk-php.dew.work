@@ -13,8 +13,8 @@ describe('index', function () {
                 ));
         });
 
-        $this->get('/references/foo/1234')
-            ->assertRedirect('/references/foo/1234/one');
+        $this->get('/en-us/foo/1234')
+            ->assertRedirect('/en-us/foo/1234/one');
     });
 
     it('returns 404 if docs does not have any apis', function () {
@@ -24,7 +24,7 @@ describe('index', function () {
                 ->andReturns(emptyDocs());
         });
 
-        $this->get('/references/foo/1234')->assertNotFound();
+        $this->get('/en-us/foo/1234')->assertNotFound();
     });
 });
 
@@ -38,7 +38,7 @@ describe('show', function () {
                 ));
         });
 
-        $this->get('/references/foo/1234/test')->assertOk();
+        $this->get('/en-us/foo/1234/test')->assertOk();
     });
 
     it('returns 404 if api does not exist', function () {
@@ -48,6 +48,10 @@ describe('show', function () {
                 ->andReturns(emptyDocs());
         });
 
-        $this->get('/references/foo/1234/test')->assertNotFound();
+        $this->get('/en-us/foo/1234/test')->assertNotFound();
+    });
+
+    it('returns 404 if locale is not supported on documentation', function () {
+        $this->get('/en-gb/foo/1234/test')->assertNotFound();
     });
 });

@@ -15,7 +15,7 @@ describe('show', function () {
                 ]));
         });
 
-        $this->get('/references/foo')
-            ->assertRedirect('/references/foo/1234');
+        $this->get('/en-us/foo')
+            ->assertRedirect('/en-us/foo/1234');
     });
 });

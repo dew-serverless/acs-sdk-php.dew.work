@@ -1,6 +1,6 @@
 <div class="ml-80">
     <div class="ml-16 pt-16 px-4 pb-6 max-w-3xl">
-        <x-language current="{{ App::currentLocale() }}" />
+        <x-language current="{{ Request::route('locale') }}" />
 
         <article>
             <header class="mt-2">
