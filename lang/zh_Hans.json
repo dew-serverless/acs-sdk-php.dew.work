@@ -10,6 +10,5 @@
     "required": "必要",
     "Example:": "示例：",
     "Default:": "默认：",
-    "HTTP Headers": "HTTP 标头",
-    "The page is auto-generated with acs-metadata v:version - Openmeta :metadata": "页面使用 acs-metadata v:version - 开放元数据 :metadata 自动生成"
+    "HTTP Headers": "HTTP 标头"
 }

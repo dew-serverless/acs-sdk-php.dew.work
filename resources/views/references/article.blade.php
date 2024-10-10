@@ -4,7 +4,7 @@
             <x-language current="{{ Request::route('locale') }}" />
         </div>
 
-        <article>
+        <article class="mb-32">
             <header class="mt-2">
                 <h1 class="font-black text-4xl leading-snug text-gray-800">
                     {{ $api->title }}
@@ -24,14 +24,5 @@
 
             @include('references.response')
         </article>
-
-        <footer class="mt-32 mb-6">
-            <p class="text-xs text-slate-600">
-                {{ __('The page is auto-generated with acs-metadata v:version - Openmeta :metadata', [
-                    'version' => $pkg_version,
-                    'metadata' => $pkg_metadata,
-                ]) }}
-            </p>
-        </footer>
     </div>
 </div>
