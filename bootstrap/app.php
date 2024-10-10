@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(
             append: [
                 ConfigureLanguage::class,
+                'cache.headers:public;max_age=300;etag',
             ],
             remove: [
                 \Illuminate\Cookie\Middleware\EncryptCookies::class,
