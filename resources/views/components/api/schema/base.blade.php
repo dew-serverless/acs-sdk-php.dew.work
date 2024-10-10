@@ -34,9 +34,7 @@
             </div>
         @endif
     </header>
-@endunless
 
-@if (! $compact)
     @if (($schema['description'] ?? '') !== '')
         <div class="mt-3 text-sm text-slate-600 markdown markdown-base">
             {!! $markdown->convert($schema['description']) !!}
@@ -46,7 +44,7 @@
             {{ $schema['title'] }}
         </div>
     @endif
-@endif
+@endunless
 
 @if (($schema['example'] ?? '') !== '')
     <div class="mt-5 text-xs text-slate-600">
