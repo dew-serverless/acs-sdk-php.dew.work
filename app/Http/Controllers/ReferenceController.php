@@ -7,6 +7,7 @@ use App\Metadata\ApiDocsResolver;
 use App\Metadata\ProductResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
@@ -47,13 +48,20 @@ class ReferenceController
             $docs = $resolver->resolve(
                 $request->route('product'),
                 $request->route('version'),
-                $request->language()
+                $language = $request->language()
             );
 
             $api = $docs->getApi($request->route('api'));
 
+            $product = $products->resolve($request->route('product'), $language);
+
             return view('references.show', [
-                'products' => $products->all($request->language()),
+                'title' => implode(' - ', [
+                    $api->getName(),
+                    Str::title($product->name),
+                    config('app.name'),
+                ]),
+                'products' => $products->all($language),
                 'product' => $request->route('product'),
                 'version' => $request->route('version'),
                 'api' => $api,

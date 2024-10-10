@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ $api->title }} - {{ $version }} - {{ $product }} - ACS SDK PHP</title>
+        <title>{{ $title }}</title>
 
         @vite('resources/css/app.css')
 
