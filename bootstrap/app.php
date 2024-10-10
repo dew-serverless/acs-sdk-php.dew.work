@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Middleware\ConfigureLanguage;
+use App\Http\Middleware\ConfigureLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(
             append: [
-                ConfigureLanguage::class,
+                ConfigureLocale::class,
                 'cache.headers:public;max_age=300;etag',
             ],
             remove: [
