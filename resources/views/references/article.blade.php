@@ -20,6 +20,8 @@
                 @endforeach
             </header>
 
+            @include('references.description')
+
             @include('references.request')
 
             @include('references.response')
