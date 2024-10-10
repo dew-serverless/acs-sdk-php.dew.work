@@ -8,11 +8,6 @@ use InvalidArgumentException;
 
 class ProductResolver
 {
-    /**
-     * @var array<string, mixed[]>|null
-     */
-    private ?array $data = null;
-
     public function __construct(
         private Filesystem $files,
         private Repository $cache
@@ -32,7 +27,7 @@ class ProductResolver
             );
         }
 
-        return new Product($this->data[$normalized]);
+        return new Product($products[$normalized]);
     }
 
     /**
@@ -46,19 +41,7 @@ class ProductResolver
     /**
      * @return array<int, mixed[]>
      */
-    public function get(string $language): array
-    {
-        if ($this->data === null) {
-            $this->data = $this->make($language);
-        }
-
-        return $this->data;
-    }
-
-    /**
-     * @return array<int, mixed[]>
-     */
-    private function make(string $language): array
+    private function get(string $language): array
     {
         return $this->cache->rememberForever(
             static::cacheKey($language),
