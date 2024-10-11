@@ -45,9 +45,13 @@
                 :aria-controls="$id('dropdown-button')"
                 class="flex items-center w-full py-2.5 px-4 bg-white rounded-md shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
             >
-                <span class="text-base font-bold text-slate-800 leading-none break-all">{{ $product }}</span>
+                <span class="text-base font-bold text-slate-800 leading-none break-all">
+                    {{ Request::route('product') }}
+                </span>
                 <span class="inline-block px-2 text-sm text-slate-300 leading-none">/</span>
-                <span class="text-base text-slate-600 leading-none">{{ $version }}</span>
+                <span class="text-base text-slate-600 leading-none">
+                    {{ Request::route('version') }}
+                </span>
                 <svg class="ml-auto -mr-1 h-5 w-5 text-slate-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                 </svg>

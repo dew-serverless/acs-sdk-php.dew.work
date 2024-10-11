@@ -62,8 +62,6 @@ class ReferenceController
                     config('app.name'),
                 ]),
                 'products' => $products->all($language),
-                'product' => $request->route('product'),
-                'version' => $request->route('version'),
                 'api' => $api,
                 'directories' => $docs->directories ?? [],
                 'markdown' => $markdown,
