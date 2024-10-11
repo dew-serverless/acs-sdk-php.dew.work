@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DocumentationRequest;
+use App\Markdown\ReferenceMarkdownConverter;
 use App\Metadata\ApiDocsResolver;
 use App\Metadata\ProductResolver;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 class ReferenceController
 {
@@ -42,7 +42,7 @@ class ReferenceController
         DocumentationRequest $request,
         ApiDocsResolver $resolver,
         ProductResolver $products,
-        GithubFlavoredMarkdownConverter $markdown
+        ReferenceMarkdownConverter $markdown
     ): View {
         try {
             $docs = $resolver->resolve(
