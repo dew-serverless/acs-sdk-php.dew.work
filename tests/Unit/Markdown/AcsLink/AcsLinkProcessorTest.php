@@ -35,7 +35,7 @@ test('acs link extension with unmatched url format', function () {
 
 function environmentForTestingAcsLinkExtension(): EnvironmentInterface
 {
-    return (new Environment())
-        ->addExtension(new CommonMarkCoreExtension())
-        ->addExtension(new AcsLinkExtension());
+    return (new Environment)
+        ->addExtension(new CommonMarkCoreExtension)
+        ->addExtension(new AcsLinkExtension);
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Metadata\ApiDocs;
 use App\Metadata\ApiDocsResolver;
 use App\Metadata\Product;
 use App\Metadata\ProductResolver;

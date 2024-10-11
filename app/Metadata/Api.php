@@ -32,7 +32,7 @@ abstract class Api
     /**
      * @return \App\Metadata\HttpInvocation[]
      */
-    abstract function getHttpInvocations(): array;
+    abstract public function getHttpInvocations(): array;
 
     public function hasHostParameters(): bool
     {
@@ -104,9 +104,6 @@ abstract class Api
         return $this->getGrouppedParameters()->has('body');
     }
 
-    /**
-     * @return \App\Metadata\Parameter|null
-     */
     public function getRequestBody(): ?Parameter
     {
         return $this->getParametrsByLocation('body')[0] ?? null;
@@ -138,9 +135,6 @@ abstract class Api
         return $this->grouppedParameters;
     }
 
-    /**
-     * @return \App\Metadata\Response|null
-     */
     public function getResponse(string $code): ?Response
     {
         if (! isset($this->definition['responses'][$code])) {
