@@ -11,10 +11,10 @@
         <li>
             <a
                 {{ $attributes->class([
-                    'font-bold' => $current === $language['locale'],
-                    'text-slate-600' => $current === $language['locale'],
                     'cursor-pointer',
-                    'hover:underline' => $current !== $language['locale'],
+                    ...$current === $language['locale']
+                        ? ['font-bold', 'text-slate-600']
+                        : ['hover:underline'],
                 ]) }}
                 href="{{ route('references.apis.show', [
                     'locale' => $language['locale'],
