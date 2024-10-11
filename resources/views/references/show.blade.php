@@ -8,8 +8,7 @@
 
         @vite('resources/css/app.css')
 
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" integrity="sha256-NY2a+7GrW++i9IBhowd25bzXcH9BCmBrqYX5i8OxwDQ=" crossorigin="anonymous" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" defer></script>
+        @vite('resources/js/app.js')
     </head>
     <body class="font-sans antialiased">
         <div class="flex min-h-screen">
