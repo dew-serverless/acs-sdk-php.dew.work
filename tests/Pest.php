@@ -1,5 +1,7 @@
 <?php
 
+use App\Metadata\ApiDocs;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -41,7 +43,41 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function testDocs(array $info = [], array $apis = [], array $endpoints = [])
 {
-    // ..
+    return new ApiDocs([
+        'version' => '1.0',
+        'info' => [
+            'style' => 'RPC',
+            'product' => 'foo',
+            'version' => '1234',
+            ...$info,
+        ],
+        'directories' => [],
+        'components' => ['schemas' => []],
+        'apis' => [
+            ...$apis,
+        ],
+        'endpoints' => [
+            ...$endpoints,
+        ],
+    ]);
+}
+
+function emptyDocs()
+{
+    return testDocs();
+}
+
+function testApi(array $definition = [])
+{
+    return [
+        'methods' => ['post'],
+        'schemes' => ['https'],
+        'security' => [],
+        'parameters' => [],
+        'responses' => [],
+        'title' => 'Test',
+        ...$definition,
+    ];
 }

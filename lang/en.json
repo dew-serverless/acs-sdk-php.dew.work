@@ -1,0 +1,14 @@
+{
+    "Request": "Request",
+    "Host Parameters": "Host Parameters",
+    "Path Parameters": "Path Parameters",
+    "Header Parameters": "Header Parameters",
+    "Query Parameters": "Query Parameters",
+    "FormData": "FormData",
+    "Response": "Response",
+    "Body": "Body",
+    "required": "required",
+    "Example:": "Example:",
+    "Default:": "Default:",
+    "HTTP Headers": "HTTP Headers"
+}
