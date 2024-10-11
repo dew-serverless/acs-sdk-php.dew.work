@@ -22,17 +22,13 @@
         @foreach ($definition['children'] as $item)
             @if (is_string($item))
                 <li>
-                    <a
-                        href="{{ route('references.apis.show', [
-                            'locale' => Request::route('locale'),
-                            'product' => Request::route('product'),
-                            'version' => Request::route('version'),
-                            'api' => $item,
-                        ]) }}"
-                        class="block py-2 px-4 text-base leading-tight overflow-hidden overflow-ellipsis cursor-pointer {{ Request::route('api') === $item ? 'text-sky-600 font-bold' : 'text-slate-600 hover:text-slate-400' }}"
-                    >
-                        {{ $item }}
-                    </a>
+                    <x-sidebar.nav
+                        locale="{{ Request::route('locale') }}"
+                        product="{{ Request::route('product') }}"
+                        version="{{ Request::route('version') }}"
+                        api="{{ $item }}"
+                        active="{{ Request::route('api') === $item }}"
+                    />
                 </li>
             @elseif (is_array($item))
                 <x-sidebar.navigation
@@ -42,15 +38,11 @@
         @endforeach
     </ul>
 @elseif (is_string($definition))
-    <a
-        href="{{ route('references.apis.show', [
-            'locale' => Request::route('locale'),
-            'product' => Request::route('product'),
-            'version' => Request::route('version'),
-            'api' => $definition,
-        ]) }}"
-        class="block py-2 px-4 text-base leading-tight overflow-hidden overflow-ellipsis cursor-pointer {{ Request::route('api') === $definition ? 'text-sky-600 font-bold' : 'text-slate-600 hover:text-slate-400' }}"
-    >
-        {{ $definition }}
-    </a>
+    <x-sidebar.nav
+        locale="{{ Request::route('locale') }}"
+        product="{{ Request::route('product') }}"
+        version="{{ Request::route('version') }}"
+        api="{{ $definition }}"
+        active="{{ Request::route('api') === $definition }}"
+    />
 @endif
