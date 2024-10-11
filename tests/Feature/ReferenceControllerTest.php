@@ -2,6 +2,8 @@
 
 use App\Metadata\ApiDocs;
 use App\Metadata\ApiDocsResolver;
+use App\Metadata\Product;
+use App\Metadata\ProductResolver;
 
 describe('index', function () {
     it('redirects to the reference of the first api', function () {
@@ -36,6 +38,19 @@ describe('show', function () {
                 ->andReturns(testDocs(
                     apis: ['test' => testApi()]
                 ));
+        });
+
+        $this->mock(ProductResolver::class, function ($mock) {
+            $mock->expects()
+                ->resolve('foo', Mockery::any())
+                ->andReturns(new Product([
+                    'code' => 'foo',
+                    'name' => 'Foo',
+                ]));
+
+            $mock->expects()
+                ->all(Mockery::any())
+                ->andReturns([]);
         });
 
         $this->get('/en-us/foo/1234/test')->assertOk();
